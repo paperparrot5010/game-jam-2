@@ -2,6 +2,7 @@ extends CharacterBody2D
 var speed = 200
 var gravity = 13
 var jump = 300
+
 @onready var jump_sound: AudioStreamPlayer2D = $Jump
 @onready var coyote_timer: Timer = $CoyoteTimer
 @export var Deathparticles : PackedScene
@@ -49,6 +50,7 @@ func _physics_process(_delta: float) -> void:
 signal player_dead()
 func death():
 	#understand what is below
+	
 	var _particle = Deathparticles.instantiate()
 	_particle.position = global_position
 	_particle.rotation = global_rotation
@@ -56,6 +58,7 @@ func death():
 	get_tree().current_scene.add_child(_particle)
 	$"../Camera2D".screen_shake(5 , 1)
 	queue_free()
+	
 	player_dead.emit()
 
 

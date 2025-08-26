@@ -1,4 +1,6 @@
 extends Node2D
+@onready var death_sound: AudioStreamPlayer2D = $death
+
 @onready var player: CharacterBody2D = $Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var can_reload
@@ -9,6 +11,7 @@ func on_player_jumped():
 	player.death()
 
 func _on_player_dead():
+	death_sound.play()
 	can_reload = true
 	$Timer.start()
 	await $Timer.timeout

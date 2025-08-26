@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ci2giol3i4yjw" path="res://objects/assits for the jam .png" id="4_w0rsf"]
 [ext_resource type="PackedScene" uid="uid://c6tnrclb70hyi" path="res://Character/player.tscn" id="5_jjm20"]
 [ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="6_met6k"]
-[ext_resource type="PackedScene" uid="uid://dqgmo8svlrqq5" path="res://UI/death_ui.tscn" id="7_cnb2n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_alax5"]
 texture = ExtResource("3_cnb2n")
@@ -78,6 +77,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_o0ion"]
 resource_name = "told_u_ani"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -85,16 +85,33 @@ tracks/0/path = NodePath("RichTextLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_cnb2n"]
+resource_name = "told_u_ani_2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ievsm"]
 _data = {
 &"RESET": SubResource("Animation_mq04p"),
-&"told_u_ani": SubResource("Animation_o0ion")
+&"told_u_ani": SubResource("Animation_o0ion"),
+&"told_u_ani_2": SubResource("Animation_cnb2n")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehptt"]
@@ -181,9 +198,9 @@ libraries = {
 position = Vector2(570, 293.5)
 shape = SubResource("RectangleShape2D_ehptt")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="transitioning" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="transitioning"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -192,7 +209,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.905882, 0.192157, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="transitioning"]
 libraries = {
 &"": SubResource("AnimationLibrary_cnb2n")
 }
@@ -204,6 +221,30 @@ one_shot = true
 [node name="Camera2D" parent="." instance=ExtResource("6_met6k")]
 position = Vector2(573, 274)
 
-[node name="Death UI" parent="." instance=ExtResource("7_cnb2n")]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="for death" type="RichTextLabel" parent="CanvasLayer2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.0
+offset_top = -144.0
+offset_right = 116.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[shake]Press [rainbow]Enter[/rainbow] to Replay[/shake]"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="text_for_death_ani" type="AnimationPlayer" parent="."]
+
+[node name="told you timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dby0rmudlwtvg"]
+[gd_scene load_steps=16 format=3 uid="uid://dby0rmudlwtvg"]
 
 [ext_resource type="Script" uid="uid://vatcgjd77qqq" path="res://levels/level_2.gd" id="1_dfjjl"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="1_ilhis"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ci2giol3i4yjw" path="res://objects/assits for the jam .png" id="5_sd18g"]
 [ext_resource type="PackedScene" uid="uid://c6tnrclb70hyi" path="res://Character/player.tscn" id="6_vm7no"]
 [ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="8_at1ld"]
+[ext_resource type="AudioStream" uid="uid://lsbjwctespjp" path="res://Sounds/sound4.mp3" id="9_at1ld"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hbb88"]
 texture = ExtResource("4_at1ld")
@@ -62,21 +63,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_hbb88")
 sources/2 = SubResource("TileSetAtlasSource_wcjpl")
 
-[sub_resource type="Animation" id="Animation_dfjjl"]
-resource_name = "death-text"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/RichTextLabel:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_at1ld"]
 length = 0.001
 tracks/0/type = "value"
@@ -90,6 +76,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_dfjjl"]
+resource_name = "death-text"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sd18g"]
@@ -154,3 +155,7 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_at1ld")
+volume_db = 2.0
