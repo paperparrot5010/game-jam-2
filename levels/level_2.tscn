@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dby0rmudlwtvg"]
+[gd_scene load_steps=15 format=3 uid="uid://dby0rmudlwtvg"]
 
+[ext_resource type="Script" uid="uid://vatcgjd77qqq" path="res://levels/level_2.gd" id="1_dfjjl"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="1_ilhis"]
 [ext_resource type="Texture2D" uid="uid://dlsse6geijuj" path="res://objects/closed g door.png" id="2_ep78u"]
 [ext_resource type="PackedScene" uid="uid://1d5y5pivsepk" path="res://levels/cookies.tscn" id="3_dfjjl"]
 [ext_resource type="Texture2D" uid="uid://cryjjtushkc4a" path="res://objects/floor.png" id="4_at1ld"]
 [ext_resource type="Texture2D" uid="uid://ci2giol3i4yjw" path="res://objects/assits for the jam .png" id="5_sd18g"]
 [ext_resource type="PackedScene" uid="uid://c6tnrclb70hyi" path="res://Character/player.tscn" id="6_vm7no"]
+[ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="8_at1ld"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hbb88"]
 texture = ExtResource("4_at1ld")
@@ -60,7 +62,44 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_hbb88")
 sources/2 = SubResource("TileSetAtlasSource_wcjpl")
 
+[sub_resource type="Animation" id="Animation_dfjjl"]
+resource_name = "death-text"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_at1ld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sd18g"]
+_data = {
+&"RESET": SubResource("Animation_at1ld"),
+&"death-text": SubResource("Animation_dfjjl")
+}
+
 [node name="level2" type="Node2D"]
+script = ExtResource("1_dfjjl")
 
 [node name="Green" type="Sprite2D" parent="."]
 position = Vector2(574.5, 361)
@@ -83,3 +122,35 @@ layer_0/tile_data = PackedInt32Array(851968, 131074, 0, 917504, 131074, 0, 98304
 
 [node name="Player" parent="." instance=ExtResource("6_vm7no")]
 position = Vector2(156, 276)
+
+[node name="Camera2D" parent="." instance=ExtResource("8_at1ld")]
+position = Vector2(579, 301)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -77.0
+offset_right = 325.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[shake]Press [rainbow]Enter[/rainbow] to Replay[/shake]"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sd18g")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

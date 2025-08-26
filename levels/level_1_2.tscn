@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgdg4mgx818qs"]
+[gd_scene load_steps=18 format=3 uid="uid://dgdg4mgx818qs"]
 
 [ext_resource type="Script" uid="uid://nngfuuuslcvb" path="res://level_1_2.gd" id="1_ehptt"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="2_met6k"]
 [ext_resource type="Texture2D" uid="uid://cryjjtushkc4a" path="res://objects/floor.png" id="3_cnb2n"]
 [ext_resource type="Texture2D" uid="uid://ci2giol3i4yjw" path="res://objects/assits for the jam .png" id="4_w0rsf"]
 [ext_resource type="PackedScene" uid="uid://c6tnrclb70hyi" path="res://Character/player.tscn" id="5_jjm20"]
+[ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="6_met6k"]
+[ext_resource type="PackedScene" uid="uid://dqgmo8svlrqq5" path="res://UI/death_ui.tscn" id="7_cnb2n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_alax5"]
 texture = ExtResource("3_cnb2n")
@@ -59,21 +61,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_alax5")
 sources/2 = SubResource("TileSetAtlasSource_qmmhk")
 
-[sub_resource type="Animation" id="Animation_o0ion"]
-resource_name = "told_u_ani"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_mq04p"]
 length = 0.001
 tracks/0/type = "value"
@@ -89,29 +76,29 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_o0ion"]
+resource_name = "told_u_ani"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ievsm"]
 _data = {
 &"RESET": SubResource("Animation_mq04p"),
 &"told_u_ani": SubResource("Animation_o0ion")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ej323"]
-radius = 79.0759
-
-[sub_resource type="Animation" id="Animation_ehptt"]
-resource_name = "trans2-fadout"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehptt"]
+size = Vector2(1030, 75)
 
 [sub_resource type="Animation" id="Animation_met6k"]
 length = 0.001
@@ -126,6 +113,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ehptt"]
+resource_name = "trans2-fadout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cnb2n"]
@@ -176,8 +178,8 @@ libraries = {
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(654, 321)
-shape = SubResource("CircleShape2D_ej323")
+position = Vector2(570, 293.5)
+shape = SubResource("RectangleShape2D_ehptt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -196,7 +198,12 @@ libraries = {
 }
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
+
+[node name="Camera2D" parent="." instance=ExtResource("6_met6k")]
+position = Vector2(573, 274)
+
+[node name="Death UI" parent="." instance=ExtResource("7_cnb2n")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

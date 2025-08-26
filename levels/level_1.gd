@@ -24,11 +24,11 @@ func _when_cookie_collected():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		$AnimationPlayer.play("no_imp")
+		$Area2D.queue_free()
 
 
 func _on_fall_tp_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") :
-
 		TransitionScreen.color_trans()
 		await TransitionScreen.on_transition_finished
 	
