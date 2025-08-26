@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://1d5y5pivsepk"]
+
+[ext_resource type="Script" uid="uid://bhatdtqw4aa6j" path="res://levels/cookies.gd" id="1_fdojk"]
+[ext_resource type="Texture2D" uid="uid://ceh0q2psmb6o7" path="res://objects/28_cookies.png" id="1_y6s3c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fdojk"]
+
+[node name="Cookies" type="Area2D"]
+script = ExtResource("1_fdojk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fdojk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y6s3c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

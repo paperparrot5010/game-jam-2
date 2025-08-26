@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://wwvba6jymiwt"]
+
+[ext_resource type="Script" uid="uid://cf3n8n2b1yab1" path="res://levels/opened_door.gd" id="1_7vs0u"]
+[ext_resource type="Texture2D" uid="uid://e7kh5so8hx4d" path="res://objects/opend g door .png" id="1_nmxbu"]
+[ext_resource type="PackedScene" uid="uid://dby0rmudlwtvg" path="res://levels/level_2.tscn" id="2_2pu25"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vs0u"]
+size = Vector2(38, 51)
+
+[node name="Opened door" type="Area2D"]
+script = ExtResource("1_7vs0u")
+target_scene = ExtResource("2_2pu25")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nmxbu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 6.5)
+shape = SubResource("RectangleShape2D_7vs0u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
