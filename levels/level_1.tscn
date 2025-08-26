@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dg6w31d2gpglv"]
+[gd_scene load_steps=27 format=3 uid="uid://dg6w31d2gpglv"]
 
 [ext_resource type="Texture2D" uid="uid://cryjjtushkc4a" path="res://objects/floor.png" id="1_bt44k"]
 [ext_resource type="Script" uid="uid://d0131smj1rjtp" path="res://levels/level_1.gd" id="1_btoec"]
@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://wwvba6jymiwt" path="res://levels/opened_door.tscn" id="3_n46q3"]
 [ext_resource type="Texture2D" uid="uid://dlsse6geijuj" path="res://objects/closed g door.png" id="4_l53as"]
 [ext_resource type="Texture2D" uid="uid://ci2giol3i4yjw" path="res://objects/assits for the jam .png" id="6_gwceb"]
+[ext_resource type="FontFile" uid="uid://yxkfm7fo5bvx" path="res://Button/m3x6.ttf" id="8_5ot28"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="8_l53as"]
-[ext_resource type="Script" uid="uid://dvi2ldtx350f4" path="res://levels/f_all_death.gd" id="9_3sk1a"]
+[ext_resource type="AudioStream" uid="uid://cfrkdcxbbcs84" path="res://Sounds/Minimalist4.mp3" id="10_5ot28"]
 [ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="10_08mmt"]
-[ext_resource type="PackedScene" uid="uid://dqgmo8svlrqq5" path="res://UI/death_ui.tscn" id="11_5ot28"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08mmt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3sk1a"]
 texture = ExtResource("1_bt44k")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -47,7 +47,7 @@ texture = ExtResource("1_bt44k")
 3:3/0 = 0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ot28"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08mmt"]
 texture = ExtResource("6_gwceb")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -62,12 +62,12 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_btoec"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_08mmt")
-sources/2 = SubResource("TileSetAtlasSource_5ot28")
+sources/0 = SubResource("TileSetAtlasSource_3sk1a")
+sources/2 = SubResource("TileSetAtlasSource_08mmt")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3sk1a"]
-a = Vector2(36, 0)
-b = Vector2(-43, 0)
+a = Vector2(45, 0)
+b = Vector2(-51, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3sk1a"]
 radius = 58.7282
@@ -161,6 +161,18 @@ _data = {
 &"trans2_try_2": SubResource("Animation_3sk1a")
 }
 
+[sub_resource type="Gradient" id="Gradient_08mmt"]
+offsets = PackedFloat32Array(0, 0.535088, 0.578947)
+colors = PackedColorArray(1, 1, 1, 1, 0.0757576, 0.0757576, 0.0757576, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ot28"]
+gradient = SubResource("Gradient_08mmt")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_08mmt"]
+polygon = PackedVector2Array(707, 317, 709, 642, 1125, 649, 1129, 317)
+
 [node name="LEVEL1" type="Node2D"]
 script = ExtResource("1_btoec")
 opened_door_scene = ExtResource("3_n46q3")
@@ -185,7 +197,6 @@ layer_0/tile_data = PackedInt32Array(851968, 131074, 0, 917504, 131074, 0, 98304
 position = Vector2(1033, 290)
 
 [node name="Fall tp" type="Area2D" parent="."]
-script = ExtResource("9_3sk1a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fall tp"]
 position = Vector2(659, 570)
@@ -202,6 +213,8 @@ offset_left = 577.0
 offset_top = 263.0
 offset_right = 989.0
 offset_bottom = 303.0
+theme_override_fonts/normal_font = ExtResource("8_5ot28")
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[shake]Nothing important down[/shake]"
 visible_characters = 0
@@ -216,11 +229,14 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 13.0
+offset_right = 57.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.905882, 0.192157, 1)
@@ -239,9 +255,41 @@ position = Vector2(165, 280)
 
 [node name="Camera2D" parent="." instance=ExtResource("10_08mmt")]
 position = Vector2(579, 321)
-zoom = Vector2(0.9, 0.9)
 
-[node name="Death UI" parent="." instance=ExtResource("11_5ot28")]
+[node name="replay sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_5ot28")
+volume_db = 12.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(567, 327.5)
+scale = Vector2(4.55469, 2.47266)
+color = Color(0.361575, 0.361575, 0.361575, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.43
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(577.25, 44.75)
+scale = Vector2(21.6641, 16.6641)
+color = Color(0.356863, 1, 1, 1)
+energy = 0.43
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5ot28")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(665, 528)
+scale = Vector2(21.6641, 16.6641)
+color = Color(0.356863, 1, 1, 1)
+energy = 0.43
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5ot28")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_08mmt")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(-521, 0)
+occluder = SubResource("OccluderPolygon2D_08mmt")
 
 [connection signal="body_entered" from="Fall tp" to="." method="_on_fall_tp_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

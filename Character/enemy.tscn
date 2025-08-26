@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://llkfj53gxnbp"]
+
+[ext_resource type="Script" uid="uid://cp6mniqar18kk" path="res://Character/enemy.gd" id="1_1ptw2"]
+[ext_resource type="Texture2D" uid="uid://cbjw14x8hk2r3" path="res://blck char.png" id="1_4nc8h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l2qy7"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ptw2"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hema6"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1whr7"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cfbj"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgw7e"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de8g1"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7k86"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fitc"]
+atlas = ExtResource("1_4nc8h")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gac0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ptw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hema6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1whr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cfbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgw7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de8g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7k86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fitc")
+}],
+"loop": true,
+"name": &"enemy_run",
+"speed": 8.0
+}]
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_1ptw2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_l2qy7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.708, 2)
+sprite_frames = SubResource("SpriteFrames_gac0p")
+animation = &"enemy_run"
+frame_progress = 0.0380424
+
+[node name="Attack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
+self_modulate = Color(1, 0, 0, 1)
+shape = SubResource("CapsuleShape2D_l2qy7")
+
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]

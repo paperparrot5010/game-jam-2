@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c6tnrclb70hyi"]
+[gd_scene load_steps=25 format=3 uid="uid://c6tnrclb70hyi"]
 
 [ext_resource type="Script" uid="uid://bbdgdhe1i8g8a" path="res://player.gd" id="1_3c51y"]
 [ext_resource type="Texture2D" uid="uid://b7wgc4023u2nf" path="res://Character/AnimationSheet.png" id="2_2brrg"]
@@ -145,6 +145,9 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3j4vf"]
 radius = 7.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fn4pq"]
+polygon = PackedVector2Array(20.5398, 2.82493, 30.5398, 2.82493, 30.5398, 4.82493, 32.5398, 4.82493, 32.5398, 6.82493, 33.5398, 6.82493, 34.5398, 6.82493, 34.5398, 16.8249, 32.5398, 16.8249, 32.5398, 26.8249, 34.5398, 26.8249, 34.5398, 32.8249, 32.5398, 32.8249, 32.5398, 34.8249, 28.5398, 34.8249, 28.5398, 30.8249, 23.5398, 30.8249, 23.5398, 32.8249, 22.5398, 32.8249, 22.5398, 34.8249, 16.5398, 34.8249, 16.5398, 28.8249, 18.5398, 28.8249, 18.5398, 20.8249, 20.5398, 20.8249, 19.5398, 18.8249, 18.5398, 18.8249, 18.5398, 16.8249, 16.5398, 16.8249, 16.5398, 6.82493, 18.5398, 6.82493, 18.5398, 4.82493, 20.5398, 4.82493)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_3c51y")
 Deathparticles = ExtResource("2_fn4pq")
@@ -153,6 +156,8 @@ Deathparticles = ExtResource("2_fn4pq")
 scale = Vector2(1.70833, 2)
 sprite_frames = SubResource("SpriteFrames_wl30t")
 animation = &"RUN"
+frame = 3
+frame_progress = 0.822242
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -164,3 +169,7 @@ stream = ExtResource("3_2brrg")
 [node name="CoyoteTimer" type="Timer" parent="." groups=["Player"]]
 wait_time = 0.2
 one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-26, -11)
+occluder = SubResource("OccluderPolygon2D_fn4pq")

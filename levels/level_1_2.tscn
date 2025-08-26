@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgdg4mgx818qs"]
+[gd_scene load_steps=23 format=3 uid="uid://dgdg4mgx818qs"]
 
 [ext_resource type="Script" uid="uid://nngfuuuslcvb" path="res://level_1_2.gd" id="1_ehptt"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="2_met6k"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ci2giol3i4yjw" path="res://objects/assits for the jam .png" id="4_w0rsf"]
 [ext_resource type="PackedScene" uid="uid://c6tnrclb70hyi" path="res://Character/player.tscn" id="5_jjm20"]
 [ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="6_met6k"]
+[ext_resource type="AudioStream" uid="uid://lsbjwctespjp" path="res://Sounds/sound4.mp3" id="7_cnb2n"]
+[ext_resource type="AudioStream" uid="uid://cfrkdcxbbcs84" path="res://Sounds/Minimalist4.mp3" id="8_w0rsf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_alax5"]
 texture = ExtResource("3_cnb2n")
@@ -101,7 +103,7 @@ tracks/0/path = NodePath("RichTextLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.466667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
@@ -151,6 +153,42 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_met6k"),
 &"trans2-fadout": SubResource("Animation_ehptt")
+}
+
+[sub_resource type="Animation" id="Animation_w0rsf"]
+resource_name = "death-text"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/for death:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_jjm20"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/for death:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_alax5"]
+_data = {
+&"RESET": SubResource("Animation_jjm20"),
+&"death-text": SubResource("Animation_w0rsf")
 }
 
 [node name="Level1_2" type="Node2D"]
@@ -229,10 +267,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -283.0
-offset_top = -144.0
-offset_right = 116.0
-offset_bottom = -104.0
+offset_left = -100.0
+offset_top = -152.0
+offset_right = 299.0
+offset_bottom = -112.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
@@ -242,9 +280,18 @@ visible_characters = 0
 visible_ratio = 0.0
 
 [node name="text_for_death_ani" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_alax5")
+}
 
-[node name="told you timer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
+[node name="Timer" type="Timer" parent="."]
+
+[node name="death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_cnb2n")
+volume_db = 2.0
+
+[node name="replay sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_w0rsf")
+volume_db = 12.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

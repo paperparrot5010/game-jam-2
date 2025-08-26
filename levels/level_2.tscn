@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dby0rmudlwtvg"]
+[gd_scene load_steps=17 format=3 uid="uid://dby0rmudlwtvg"]
 
 [ext_resource type="Script" uid="uid://vatcgjd77qqq" path="res://levels/level_2.gd" id="1_dfjjl"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="1_ilhis"]
@@ -99,6 +99,10 @@ _data = {
 &"death-text": SubResource("Animation_dfjjl")
 }
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_at1ld"]
+a = Vector2(75, 14)
+b = Vector2(-61, 15)
+
 [node name="level2" type="Node2D"]
 script = ExtResource("1_dfjjl")
 
@@ -159,3 +163,11 @@ one_shot = true
 [node name="death" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_at1ld")
 volume_db = 2.0
+
+[node name="fall tp" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fall tp"]
+position = Vector2(648, 569)
+shape = SubResource("SegmentShape2D_at1ld")
+
+[connection signal="body_entered" from="fall tp" to="." method="_on_fall_tp_body_entered"]

@@ -2,23 +2,27 @@ extends CharacterBody2D
 var speed = 200
 var gravity = 13
 var jump = 300
-
+var can_move : bool = true 
 @onready var jump_sound: AudioStreamPlayer2D = $Jump
 @onready var coyote_timer: Timer = $CoyoteTimer
 @export var Deathparticles : PackedScene
 @onready var camera : Camera2D = get_tree().get_first_node_in_group("Camera")
 func _physics_process(_delta: float) -> void:
 	#Move right:
-	if Input.is_action_pressed("r"):
-		$AnimatedSprite2D.flip_h = false
-		velocity.x = speed 
+	if can_move == true:
+		if Input.is_action_pressed("r"):
+			$AnimatedSprite2D.flip_h = false
+			velocity.x = speed 
 		#Move left:
-	elif Input.is_action_pressed("l"):
-		$AnimatedSprite2D.flip_h = true
-		velocity.x = -speed 
+		elif Input.is_action_pressed("l"):
+			$AnimatedSprite2D.flip_h = true
+			velocity.x = -speed 
 		#Stop
-	else :
-		velocity.x = 0
+		else :
+			velocity.x = 0
+	if !can_move :
+		$AnimatedSprite2D.play("IDLE")
+		return
 	#Animations :
 	
 	if not is_on_floor():
@@ -71,3 +75,7 @@ func jumping():
 			velocity.y = -jump
 			player_jumped.emit()  # Emit signal when jump occurs
 	
+
+
+func _on_death_area_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

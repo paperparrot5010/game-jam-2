@@ -4,6 +4,7 @@ extends Node2D
 @onready var empty_doors_node = $DOORS
 
 func _ready() -> void:
+	$"replay sound".play()
 	var cookie = find_child("Cookies")
 	if cookie :
 		cookie.activate.connect(self._when_cookie_collected)

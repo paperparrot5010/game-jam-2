@@ -19,3 +19,11 @@ func _on_player_dead():
 func _input(event: InputEvent) -> void:
 	if can_reload == true && event.is_action_pressed("Enter"):
 		get_tree().reload_current_scene()
+
+
+func _on_fall_tp_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player") :
+		TransitionScreen.color_trans()
+		await TransitionScreen.on_transition_finished
+	
+		get_tree().change_scene_to_file("res://levels/level_2_2.tscn")
