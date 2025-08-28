@@ -3,13 +3,17 @@
 [ext_resource type="Script" uid="uid://bhatdtqw4aa6j" path="res://levels/cookies.gd" id="1_fdojk"]
 [ext_resource type="Texture2D" uid="uid://ceh0q2psmb6o7" path="res://objects/28_cookies.png" id="1_y6s3c"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fdojk"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdojk"]
+radius = 7.5578
+height = 25.3444
 
 [node name="Cookies" type="Area2D"]
+scale = Vector2(2.047, 1.734)
 script = ExtResource("1_fdojk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_fdojk")
+rotation = 0.860447
+shape = SubResource("CapsuleShape2D_fdojk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_y6s3c")

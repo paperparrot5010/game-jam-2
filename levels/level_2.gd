@@ -5,6 +5,7 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var can_reload
 func _ready() -> void :
+	$"replay sound".play()
 	player.player_jumped.connect(on_player_jumped)
 	player.player_dead.connect(_on_player_dead)
 func on_player_jumped():

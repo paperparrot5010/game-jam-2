@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dib73f83iorka"
+path="res://.godot/imported/Radio 5 Black Drone.wav-a4f0977e30665e16b4ce52413dc47156.sample"
+
+[deps]
+
+source_file="res://Horror asset/Backroom Tile set/Radio/Radio 5 Black Drone.wav"
+dest_files=["res://.godot/imported/Radio 5 Black Drone.wav-a4f0977e30665e16b4ce52413dc47156.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

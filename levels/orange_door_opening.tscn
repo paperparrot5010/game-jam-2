@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://yql24gtvsxre"]
+
+[ext_resource type="Texture2D" uid="uid://dfdq8a4rjdbea" path="res://objects/opening_orange_anim.png" id="1_g3cfx"]
+[ext_resource type="Script" uid="uid://d380pyuopvjwo" path="res://levels/orange_door_opening.gd" id="1_nff8b"]
+[ext_resource type="PackedScene" uid="uid://cimcetg0qdemh" path="res://Chapter2lvls/ch_2_lvl_1.tscn" id="2_cjetb"]
+
+[sub_resource type="Animation" id="Animation_pm3kl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cjetb"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5tkq2"]
+_data = {
+&"RESET": SubResource("Animation_pm3kl"),
+&"new_animation": SubResource("Animation_cjetb")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjetb"]
+size = Vector2(20, 47)
+
+[node name="Orange_door_opening" type="Area2D"]
+script = ExtResource("1_nff8b")
+target_scene = ExtResource("2_cjetb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g3cfx")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5tkq2")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_cjetb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

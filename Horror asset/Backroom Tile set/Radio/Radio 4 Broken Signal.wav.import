@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dxd4vhaikwnf6"
+path="res://.godot/imported/Radio 4 Broken Signal.wav-493a1cea3b69dffccd3d5695c771f099.sample"
+
+[deps]
+
+source_file="res://Horror asset/Backroom Tile set/Radio/Radio 4 Broken Signal.wav"
+dest_files=["res://.godot/imported/Radio 4 Broken Signal.wav-493a1cea3b69dffccd3d5695c771f099.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 TransitionScreen="*res://Character/transition_screen.tscn"
 DeathUi_g="*res://UI/death_ui.gd"
 Player_g="*res://Character/player.tscn"
+GlobalOrangeTransitionScreen="*res://UI/canvas_layer.tscn"
 
 [input]
 

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dby0rmudlwtvg" path="res://levels/level_2.tscn" id="2_2pu25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vs0u"]
-size = Vector2(38, 51)
+size = Vector2(37, 51)
 
 [node name="Opened door" type="Area2D"]
 script = ExtResource("1_7vs0u")
@@ -15,7 +15,7 @@ target_scene = ExtResource("2_2pu25")
 texture = ExtResource("1_nmxbu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 6.5)
+position = Vector2(-1.5, 6.5)
 shape = SubResource("RectangleShape2D_7vs0u")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

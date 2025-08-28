@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bokhldc8m3ohd"]
+[gd_scene load_steps=16 format=3 uid="uid://bokhldc8m3ohd"]
 
 [ext_resource type="Script" uid="uid://p17mmoqxauq6" path="res://levels/level_2_2.gd" id="1_i6ade"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="1_tvty5"]
@@ -100,6 +100,9 @@ _data = {
 &"death-text": SubResource("Animation_dfjjl")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_744jh"]
+size = Vector2(49, 71)
+
 [node name="Level2_2" type="Node2D"]
 script = ExtResource("1_i6ade")
 
@@ -174,4 +177,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_sd18g")
 }
 
+[node name="r u woman?" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="r u woman?"]
+position = Vector2(-20.5, 293.5)
+shape = SubResource("RectangleShape2D_744jh")
+
 [connection signal="body_entered" from="r u man?" to="." method="_on_r_u_man_body_entered"]
+[connection signal="body_entered" from="r u woman?" to="." method="_on_r_u_woman_body_entered"]

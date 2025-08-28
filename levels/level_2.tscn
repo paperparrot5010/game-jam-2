@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dby0rmudlwtvg"]
+[gd_scene load_steps=22 format=3 uid="uid://dby0rmudlwtvg"]
 
 [ext_resource type="Script" uid="uid://vatcgjd77qqq" path="res://levels/level_2.gd" id="1_dfjjl"]
 [ext_resource type="Texture2D" uid="uid://bu276f1e34t3d" path="res://Background/Green.png" id="1_ilhis"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c6tnrclb70hyi" path="res://Character/player.tscn" id="6_vm7no"]
 [ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="8_at1ld"]
 [ext_resource type="AudioStream" uid="uid://lsbjwctespjp" path="res://Sounds/sound4.mp3" id="9_at1ld"]
+[ext_resource type="AudioStream" uid="uid://cfrkdcxbbcs84" path="res://Sounds/Minimalist4.mp3" id="10_sd18g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hbb88"]
 texture = ExtResource("4_at1ld")
@@ -103,6 +104,21 @@ _data = {
 a = Vector2(75, 14)
 b = Vector2(-61, 15)
 
+[sub_resource type="Gradient" id="Gradient_08mmt"]
+offsets = PackedFloat32Array(0, 0.535088, 0.578947)
+colors = PackedColorArray(1, 1, 1, 1, 0.0757576, 0.0757576, 0.0757576, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sd18g"]
+gradient = SubResource("Gradient_08mmt")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vm7no"]
+polygon = PackedVector2Array(713, 642, 713, 319, 1003, 319, 1011, 644)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hbb88"]
+polygon = PackedVector2Array(608, 320, 608, 645, 287, 644, 281, 320)
+
 [node name="level2" type="Node2D"]
 script = ExtResource("1_dfjjl")
 
@@ -150,6 +166,7 @@ bbcode_enabled = true
 text = "[shake]Press [rainbow]Enter[/rainbow] to Replay[/shake]"
 visible_characters = 0
 visible_ratio = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -169,5 +186,32 @@ volume_db = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fall tp"]
 position = Vector2(648, 569)
 shape = SubResource("SegmentShape2D_at1ld")
+
+[node name="replay sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_sd18g")
+volume_db = 12.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(567, 327.5)
+scale = Vector2(4.55469, 2.47266)
+color = Color(0.361575, 0.361575, 0.361575, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.43
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(663, 660)
+scale = Vector2(21.6641, 28.3535)
+color = Color(0.356863, 1, 1, 1)
+energy = 0.43
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_sd18g")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-9, 1)
+occluder = SubResource("OccluderPolygon2D_vm7no")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_hbb88")
 
 [connection signal="body_entered" from="fall tp" to="." method="_on_fall_tp_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dg6w31d2gpglv"]
+[gd_scene load_steps=28 format=3 uid="uid://dg6w31d2gpglv"]
 
 [ext_resource type="Texture2D" uid="uid://cryjjtushkc4a" path="res://objects/floor.png" id="1_bt44k"]
 [ext_resource type="Script" uid="uid://d0131smj1rjtp" path="res://levels/level_1.gd" id="1_btoec"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cfrkdcxbbcs84" path="res://Sounds/Minimalist4.mp3" id="10_5ot28"]
 [ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="10_08mmt"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3sk1a"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ot28"]
 texture = ExtResource("1_bt44k")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -47,7 +47,7 @@ texture = ExtResource("1_bt44k")
 3:3/0 = 0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08mmt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aerfg"]
 texture = ExtResource("6_gwceb")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -62,8 +62,8 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_btoec"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_3sk1a")
-sources/2 = SubResource("TileSetAtlasSource_08mmt")
+sources/0 = SubResource("TileSetAtlasSource_5ot28")
+sources/2 = SubResource("TileSetAtlasSource_aerfg")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3sk1a"]
 a = Vector2(45, 0)
@@ -161,17 +161,20 @@ _data = {
 &"trans2_try_2": SubResource("Animation_3sk1a")
 }
 
-[sub_resource type="Gradient" id="Gradient_08mmt"]
+[sub_resource type="Gradient" id="Gradient_nmsli"]
 offsets = PackedFloat32Array(0, 0.535088, 0.578947)
 colors = PackedColorArray(1, 1, 1, 1, 0.0757576, 0.0757576, 0.0757576, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5ot28"]
-gradient = SubResource("Gradient_08mmt")
+gradient = SubResource("Gradient_nmsli")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_08mmt"]
-polygon = PackedVector2Array(707, 317, 709, 642, 1125, 649, 1129, 317)
+polygon = PackedVector2Array(713, 642, 713, 319, 1003, 319, 1011, 644)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5ot28"]
+polygon = PackedVector2Array(608, 320, 608, 645, 287, 644, 281, 320)
 
 [node name="LEVEL1" type="Node2D"]
 script = ExtResource("1_btoec")
@@ -268,28 +271,20 @@ color = Color(0.361575, 0.361575, 0.361575, 1)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.43
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(577.25, 44.75)
-scale = Vector2(21.6641, 16.6641)
-color = Color(0.356863, 1, 1, 1)
-energy = 0.43
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_5ot28")
-
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(665, 528)
-scale = Vector2(21.6641, 16.6641)
+position = Vector2(663, 660)
+scale = Vector2(21.6641, 28.3535)
 color = Color(0.356863, 1, 1, 1)
 energy = 0.43
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_5ot28")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-9, 1)
 occluder = SubResource("OccluderPolygon2D_08mmt")
 
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
-position = Vector2(-521, 0)
-occluder = SubResource("OccluderPolygon2D_08mmt")
+occluder = SubResource("OccluderPolygon2D_5ot28")
 
 [connection signal="body_entered" from="Fall tp" to="." method="_on_fall_tp_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

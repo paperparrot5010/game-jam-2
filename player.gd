@@ -3,20 +3,28 @@ var speed = 200
 var gravity = 13
 var jump = 300
 var can_move : bool = true 
+var allowed_to_move_left : bool = true
+var allowed_to_move_right : bool = true
 @onready var jump_sound: AudioStreamPlayer2D = $Jump
 @onready var coyote_timer: Timer = $CoyoteTimer
 @export var Deathparticles : PackedScene
 @onready var camera : Camera2D = get_tree().get_first_node_in_group("Camera")
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+
 func _physics_process(_delta: float) -> void:
 	#Move right:
 	if can_move == true:
-		if Input.is_action_pressed("r"):
+		if Input.is_action_pressed("r")  :
 			$AnimatedSprite2D.flip_h = false
-			velocity.x = speed 
+			if allowed_to_move_right == true :
+				velocity.x = speed 
 		#Move left:
-		elif Input.is_action_pressed("l"):
+		elif Input.is_action_pressed("l")  :
 			$AnimatedSprite2D.flip_h = true
-			velocity.x = -speed 
+			if allowed_to_move_left == true :
+				velocity.x = -speed 
 		#Stop
 		else :
 			velocity.x = 0
@@ -29,8 +37,7 @@ func _physics_process(_delta: float) -> void:
 		
 		if velocity.y <0 :
 			$AnimatedSprite2D.play("JUMP")
-		#if velocity.y >0 :
-		#	$AnimatedSprite2D.play("JUMP")
+
 	if is_on_floor():
 		if velocity.x != 0:
 			$AnimatedSprite2D.play("RUN")
@@ -38,8 +45,12 @@ func _physics_process(_delta: float) -> void:
 			$AnimatedSprite2D.play("IDLE")
 		
 		
+		
+		
+		
 	#Applying gravity:
-	if not is_on_floor():
+	if not is_on_floor() :
+		
 		velocity.y += gravity
 	#Jump:
 	jumping()
@@ -69,13 +80,15 @@ func death():
 signal player_jumped()
 
 func jumping():
-	if is_on_floor() or coyote_timer.time_left > 0:
+	if (is_on_floor() or coyote_timer.time_left > 0) :
 		if Input.is_action_just_pressed("u"):
 			jump_sound.play()
 			velocity.y = -jump
 			player_jumped.emit()  # Emit signal when jump occurs
-	
 
 
-func _on_death_area_body_entered(body: Node2D) -> void:
+
+
+
+func _on_death_area_body_entered(_body: Node2D) -> void:
 	pass # Replace with function body.

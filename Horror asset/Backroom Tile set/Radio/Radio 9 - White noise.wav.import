@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bmxndrqbamnkl"
+path="res://.godot/imported/Radio 9 - White noise.wav-6547eddf4d756b821ca30c3c21c26150.sample"
+
+[deps]
+
+source_file="res://Horror asset/Backroom Tile set/Radio/Radio 9 - White noise.wav"
+dest_files=["res://.godot/imported/Radio 9 - White noise.wav-6547eddf4d756b821ca30c3c21c26150.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

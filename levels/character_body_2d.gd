@@ -5,7 +5,8 @@ var gravity = 13
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player: CharacterBody2D = $"../Player"
 @onready var level_2_man: Node2D = $".."
-
+@export var  particles : PackedScene
+@onready var character_body_2d_2: CharacterBody2D = $"."
 
 
 
@@ -29,3 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 func move_right():
 	velocity.x = speed
+	
+	
+
+	
