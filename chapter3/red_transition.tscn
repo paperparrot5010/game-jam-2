@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdw6spqg00nni"]
+
+[sub_resource type="Animation" id="Animation_cp5tj"]
+resource_name = "fade-in"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cim7q"]
+_data = {
+&"fade-in": SubResource("Animation_cp5tj")
+}
+
+[node name="RedTransition" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.826509, 2.31028e-06, 9.62615e-08, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cim7q")
+}

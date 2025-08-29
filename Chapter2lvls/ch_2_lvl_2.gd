@@ -19,7 +19,7 @@ func _when_cookie_collected():
 	if opened_door_scene :
 		var door_instantiation = opened_door_scene.instantiate()
 		empty_doors_node.add_child(door_instantiation)
-		door_instantiation.position = Vector2(175.0,288.0)
+		door_instantiation.position = Vector2(183.0,353.0)
 
 
 

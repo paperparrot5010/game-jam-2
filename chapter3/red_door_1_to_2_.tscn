@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://b65vpe2axi6hg"]
+
+[ext_resource type="Script" uid="uid://c3746wly5782j" path="res://red_door_1_to_2_.gd" id="1_4eqq0"]
+[ext_resource type="PackedScene" uid="uid://oqkk3idndts7" path="res://chapter3/ch_2_lvl_3.tscn" id="2_hpycl"]
+[ext_resource type="Texture2D" uid="uid://d171ww2eu3fsr" path="res://red level/red opening door.png" id="3_83xaf"]
+
+[sub_resource type="Animation" id="Animation_63fio"]
+resource_name = "Opening_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+}
+
+[sub_resource type="Animation" id="Animation_phjn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jk1yr"]
+_data = {
+&"Opening_anim": SubResource("Animation_63fio"),
+&"RESET": SubResource("Animation_phjn1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coxcn"]
+size = Vector2(15, 51)
+
+[node name="red_door_1to2_" type="Area2D"]
+script = ExtResource("1_4eqq0")
+target_scene = ExtResource("2_hpycl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_83xaf")
+hframes = 8
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jk1yr")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 6.5)
+shape = SubResource("RectangleShape2D_coxcn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

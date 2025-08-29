@@ -126,4 +126,5 @@ func _on_yes_button_pressed() -> void:
 
 func _on_no_button_pressed() -> void:
 	question_anim.play("question_disappear")
-	no_answer_enemy.be_visible()
+	if no_answer_enemy :
+		no_answer_enemy.be_visible()

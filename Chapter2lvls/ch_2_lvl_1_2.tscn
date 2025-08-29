@@ -71,7 +71,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/path = NodePath("Question Layer/RichTextLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,13 +80,37 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Question Layer/Yes Button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Question Layer/No Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_cobsu"]
 resource_name = "question"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/path = NodePath("Question Layer/RichTextLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -95,13 +119,37 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Question Layer/Yes Button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Question Layer/No Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_0so3c"]
 resource_name = "question_disappear"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RichTextLabel:visible_ratio")
+tracks/0/path = NodePath("Question Layer/RichTextLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -109,6 +157,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Question Layer/Yes Button:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Question Layer/No Button:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_llwq4"]
@@ -352,20 +424,6 @@ position = Vector2(579, 321)
 stream = ExtResource("13_tfojy")
 volume_db = 2.0
 
-[node name="Yes Button" type="Button" parent="."]
-offset_left = 356.0
-offset_top = 429.0
-offset_right = 492.0
-offset_bottom = 531.0
-text = "Yes"
-
-[node name="No Button" type="Button" parent="."]
-offset_left = 648.0
-offset_top = 429.0
-offset_right = 784.0
-offset_bottom = 531.0
-text = "No"
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
@@ -405,7 +463,26 @@ position = Vector2(573, 73)
 position = Vector2(576, 617.5)
 shape = SubResource("RectangleShape2D_dcken")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Question Layer" type="CanvasLayer" parent="."]
+
+[node name="Yes Button" type="Button" parent="Question Layer"]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+offset_left = 356.0
+offset_top = 429.0
+offset_right = 492.0
+offset_bottom = 531.0
+text = "Yes"
+
+[node name="No Button" type="Button" parent="Question Layer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 648.0
+offset_top = 429.0
+offset_right = 784.0
+offset_bottom = 531.0
+text = "No"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Question Layer"]
 offset_left = 442.0
 offset_top = 358.0
 offset_right = 932.0
@@ -511,9 +588,9 @@ pitch_scale = 3.0
 [node name="WallSoundtimer" type="Timer" parent="."]
 wait_time = 10.0
 
-[connection signal="pressed" from="Yes Button" to="." method="_on_yes_button_pressed"]
-[connection signal="pressed" from="No Button" to="." method="_on_no_button_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="pressed" from="Question Layer/Yes Button" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Question Layer/No Button" to="." method="_on_no_button_pressed"]
 [connection signal="body_entered" from="NO_answer_enemy/enemy_attack" to="." method="_on_enemy_attack_body_entered"]
 [connection signal="body_entered" from="when_yes_area" to="." method="_on_when_yes_area_body_entered"]
 [connection signal="body_entered" from="Sudden_Enemy/Area2DSuddeE" to="." method="_on_area_2d_sudde_e_body_entered"]
