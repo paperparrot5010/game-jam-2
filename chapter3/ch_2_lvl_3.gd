@@ -66,4 +66,5 @@ func _on_area_2d_moving_2_body_entered(body: Node2D) -> void:
 
 func _on_moving_cookies_are_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		cookies.position.x = 293.0
+		if cookies :
+			cookies.position.x = 293.0

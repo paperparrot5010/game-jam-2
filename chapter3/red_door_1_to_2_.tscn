@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b65vpe2axi6hg"]
 
 [ext_resource type="Script" uid="uid://c3746wly5782j" path="res://red_door_1_to_2_.gd" id="1_4eqq0"]
-[ext_resource type="PackedScene" uid="uid://oqkk3idndts7" path="res://chapter3/ch_2_lvl_3.tscn" id="2_hpycl"]
+[ext_resource type="PackedScene" uid="uid://b22s74ndihcp7" path="res://chapter3/ch_3_lvl_2.tscn" id="2_4eqq0"]
 [ext_resource type="Texture2D" uid="uid://d171ww2eu3fsr" path="res://red level/red opening door.png" id="3_83xaf"]
 
 [sub_resource type="Animation" id="Animation_63fio"]
@@ -45,7 +45,7 @@ size = Vector2(15, 51)
 
 [node name="red_door_1to2_" type="Area2D"]
 script = ExtResource("1_4eqq0")
-target_scene = ExtResource("2_hpycl")
+target_scene = ExtResource("2_4eqq0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_83xaf")

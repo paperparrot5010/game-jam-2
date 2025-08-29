@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cujsfm13ulrsj" path="res://Background/Gray.png" id="1_0afch"]
 [ext_resource type="Script" uid="uid://dh80wv3275ss1" path="res://chapter3/ch_2_lvl_3.gd" id="1_2q7bg"]
 [ext_resource type="Texture2D" uid="uid://inc5kqq4phhj" path="res://red level/red block.png" id="2_k751o"]
-[ext_resource type="PackedScene" path="res://chapter3/red_door_1_to_2_.tscn" id="2_rtrgy"]
+[ext_resource type="PackedScene" uid="uid://b65vpe2axi6hg" path="res://chapter3/red_door_1_to_2_.tscn" id="2_rtrgy"]
 [ext_resource type="PackedScene" uid="uid://dgo2istfpbd03" path="res://camera/camera_2d.tscn" id="3_78rwf"]
 [ext_resource type="Texture2D" uid="uid://d171ww2eu3fsr" path="res://red level/red opening door.png" id="3_k751o"]
 [ext_resource type="PackedScene" uid="uid://c6tnrclb70hyi" path="res://Character/player.tscn" id="4_2q7bg"]
@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://lsbjwctespjp" path="res://Sounds/sound4.mp3" id="8_eknpu"]
 [ext_resource type="AudioStream" uid="uid://cfrkdcxbbcs84" path="res://Sounds/Minimalist4.mp3" id="9_fcqmy"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eknpu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtrgy"]
 texture = ExtResource("2_k751o")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -20,7 +20,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_fcqmy"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_eknpu")
+sources/0 = SubResource("TileSetAtlasSource_rtrgy")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_fcqmy"]
 a = Vector2(-169, 332)

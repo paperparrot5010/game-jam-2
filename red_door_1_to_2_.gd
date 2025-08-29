@@ -34,6 +34,6 @@ func next_level():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") :
-		GlobalOrangeTransitionScreen.orange_transition()
-		await GlobalOrangeTransitionScreen._on_orange_transition_finished
+		GlobalRedTransition.color_trans()
+		await GlobalRedTransition._on_animation_finished
 		next_level()
